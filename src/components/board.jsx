@@ -7,18 +7,17 @@ import './board.css';
 function Board() {
   const [squares, setSquares] = useState(Array(9).fill("🧀"));
   const [XIsNext, setXIsNext] = useState(true);
-  const [winner, setWinner] = useState(null); // Track the winner
-  const [count, setCount] = useState(0); // Track the move count
+  const [winner, setWinner] = useState(null); 
+  const [count, setCount] = useState(0); 
 
   function changeSquare(i) {
-    if (squares[i] !== "🧀" || winner) return; // Prevent overwriting or further moves after game ends
+    if (squares[i] !== "🧀" || winner) return; 
     const newSquares = [...squares];
     newSquares[i] = XIsNext ? "😼" : "🐭";
     setSquares(newSquares);
-    setXIsNext(!XIsNext); // Toggle player
-    setCount(count + 1); // Increment move count
+    setXIsNext(!XIsNext); 
+    setCount(count + 1); 
 
-    // Check for a winner
     const currentWinner = checkWinner(newSquares);
     if (currentWinner) {
       // < Happywinner value={currentWinner}/>;
@@ -43,10 +42,10 @@ function Board() {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] !== "🧀" && squares[a] === squares[b] && squares[a] === squares[c]) {
-        return squares[a]=="😼" ? "😼" : "🐭"; // Return the winner (😼 or 🐭)
+        return squares[a]=="😼" ? "😼" : "🐭"; 
       }
     }
-    return null; // No winner
+    return null; 
   }
 
   return (
